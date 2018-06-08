@@ -23,7 +23,7 @@
     <integer name="config_nightColorTemperature">6000</integer>
 
     <!-- For high brightness mode -->
-    <integer name="config_outdoorAmbientLux">20000</integer>
+    <integer name="config_outdoorAmbientLux">9000</integer>
 
     <!-- BurnIn protection. This should be enabled on devices that have OLED displays -->
     <bool name="config_enableBurnInProtection">true</bool>
