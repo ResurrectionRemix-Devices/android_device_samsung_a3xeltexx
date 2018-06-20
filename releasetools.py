@@ -43,5 +43,7 @@ def FullOTA_InstallBegin(info):
     info.script.AppendExtra('ui_print("    Source code available on GitHub : @Exynos7580   ");');
     info.script.AppendExtra('ui_print("                                                    ");');
     info.script.AppendExtra('ui_print("    --> Maintainer: l-0-w                           ");');
+    info.script.AppendExtra('ui_print("    --> Updated by: danwood76                       ");');
     info.script.AppendExtra('ui_print("    --> Device: Samsung Galaxy A3 2016              ");');
     info.script.AppendExtra('ui_print("                                                    ");');
+    
