@@ -27,3 +27,8 @@ ro.hwui.text_large_cache_height=1024
 
 # Increase default scan rate of wifi
 wifi.supplicant_scan_interval=60
+
+# Suppress some logcat output
+log.tag.BrcmNfcJni=S
+log.tag.BrcmNfcNfa=S
+log.tag.SecHAL=S
