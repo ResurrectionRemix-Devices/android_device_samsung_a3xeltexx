@@ -21,7 +21,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE               := nfc_nci.universal7580
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS          := optional
-LOCAL_PROPRIETARY_MODULE   := true
 
 LOCAL_SRC_FILES := \
 	hal.c
