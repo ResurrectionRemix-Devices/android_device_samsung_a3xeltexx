@@ -507,7 +507,7 @@ static int camera_cancel_auto_focus(struct camera_device *device)
     ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device,
     	(uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
     	
-	/* Blocking this function here allows the autofocus to work and the scanner app not to crash instantly */
+    /* Blocking this function here allows the autofocus to work and the scanner app not to crash instantly */
     ALOGV("%s->BLOCKED as it crashes the camera app!", __FUNCTION__);
     //return VENDOR_CALL(device, cancel_auto_focus);
     return 0;
