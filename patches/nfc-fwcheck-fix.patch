@@ -1,0 +1,13 @@
+--- a/packages/apps/Nfc/src/com/android/nfc/NfcService.java	2018-06-29 16:58:21.452717267 +0100
++++ b/packages/apps/Nfc/src/com/android/nfc/NfcService.java	2018-06-29 16:57:51.209919874 +0100
+@@ -594,8 +594,8 @@
+                         Log.d(TAG, "NFC is on. Doing normal stuff");
+                         enableInternal();
+                     } else {
+-                        Log.d(TAG, "NFC is off.  Checking firmware version");
+-                        mDeviceHost.checkFirmware();
++                        Log.d(TAG, "NFC is off.  (not)Checking firmware version");
++                        //mDeviceHost.checkFirmware();
+                     }
+                     if (mPrefs.getBoolean(PREF_FIRST_BOOT, true)) {
+                         Log.i(TAG, "First Boot");
