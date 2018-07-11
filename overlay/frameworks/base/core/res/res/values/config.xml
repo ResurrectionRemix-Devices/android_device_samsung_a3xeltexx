@@ -208,7 +208,7 @@
     <integer name="config_autoBrightnessInitialLightSensorRate">250</integer>
 
     <!-- Period of time in which to consider light samples in milliseconds. -->
-    <integer name="config_autoBrightnessAmbientLightHorizon">10000</integer>
+    <integer name="config_autoBrightnessAmbientLightHorizon">5000</integer>
 
     <!-- Amount of time it takes for the light sensor to warm up in milliseconds.
          For this time after the screen turns on, the Power Manager
@@ -224,10 +224,14 @@
          Zone N + 1     array[N] <= LUX < infinity
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>15</item>
-        <item>150</item>
-        <item>1000</item>
-        <item>5000</item>
+        <item>9</item>
+        <item>30</item>
+        <item>100</item>
+        <item>325</item>
+        <item>1250</item>
+        <item>3500</item>
+        <item>10000</item>
+        <item>20000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -235,11 +239,15 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>10</item>
-        <item>80</item>
-        <item>162</item>
-        <item>190</item>
-        <item>255</item>
+        <!--     9 --> <item>18</item>
+        <!--    30 --> <item>30</item>
+        <!--   100 --> <item>59</item>
+        <!--   325 --> <item>74</item>
+        <!--  1250 --> <item>92</item>
+        <!--  3500 --> <item>118</item>
+        <!-- 10000 --> <item>155</item>
+        <!-- 20000 --> <item>222</item>
+                       <item>255</item>
     </integer-array>
 
 
