@@ -21,8 +21,7 @@
 */
 
 #define LOG_TAG "CameraWrapper"
-#define LOG_NDEBUG 0
-
+//#define LOG_NDEBUG 0
 
 #include <camera/CameraParameters.h>
 #include <camera/Camera.h>
