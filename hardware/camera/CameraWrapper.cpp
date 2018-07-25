@@ -417,12 +417,12 @@ static void camera_stop_preview(struct camera_device *device)
     VENDOR_CALL(device, stop_preview);
 
     /* If autofocus was enabled previously */
-    if(camera_auto_focus_started == 1) {
-        ALOGV("%s: Autofocus currently enabled so cancelling it!", __FUNCTION__);
+    //if(camera_auto_focus_started == 1) {
+    //    ALOGV("%s: Autofocus currently enabled so cancelling it!", __FUNCTION__);
         /* Run the cancel autofocus function here and clear the flag */
-        VENDOR_CALL(device, cancel_auto_focus);
-        camera_auto_focus_started = 0;
-    }
+    //    VENDOR_CALL(device, cancel_auto_focus);
+    //    camera_auto_focus_started = 0;
+    //}
 }
 
 static int camera_preview_enabled(struct camera_device *device)
@@ -506,7 +506,7 @@ static int camera_auto_focus(struct camera_device *device)
             (uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
 
     /* Set the autofocus flag true */
-    camera_auto_focus_started = 1;
+    //camera_auto_focus_started = 1;
     
     return VENDOR_CALL(device, auto_focus);
 }
@@ -519,11 +519,11 @@ static int camera_cancel_auto_focus(struct camera_device *device)
     ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device,
     	(uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
 
-	/* If there is no preview window yet */
-	if (gPreviewWindow == 0) {
-	    /* The cancel_auto_focus has no ill effects */
-	    return VENDOR_CALL(device, cancel_auto_focus);
-	} else {
+    /* If there is no preview window yet */
+    if (gPreviewWindow == 0) {
+        /* The cancel_auto_focus has no ill effects */
+        return VENDOR_CALL(device, cancel_auto_focus);
+    } else {
         /* Otherwise block it as it crashes the camera */
         ALOGV("%s->BLOCKED as it crashes the camera app!", __FUNCTION__);
     }
