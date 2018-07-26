@@ -48,14 +48,14 @@
                 <freq_min>200000</freq_min>
 
                 <!-- {number} Maximal frequency of this cluster -->
-                <freq_max>400000</freq_max>
+                <freq_max>600000</freq_max>
 
                 <!-- {number} Normal high speed frequency chosen by the CPU-governor (if supported) -->
-                <freq_hispeed>300000</freq_hispeed>
+                <freq_hispeed>400000</freq_hispeed>
 
                 <!-- {number} Frequency used in boostpulse mode (if supported, else any positive
                      number to enable boostpules) or zero to disable boostpulses -->
-                <freq_boost>0</freq_boost>
+                <freq_boost>600000</freq_boost>
 
                 <!-- State of each core of this cluster  -->
                 <cores>
@@ -146,7 +146,7 @@
 
         <gpu>
             <!-- {boolean} Whether the GPU settings should be applied or not -->
-            <enabled>false</enabled>
+            <enabled>true</enabled>
 
             <dvfs>
                 <!-- {boolean} Whether the DVFS settings for the GPU should be applied or not -->
@@ -204,9 +204,9 @@
                 <enabled>true</enabled>
                 <governor>interactive</governor>
                 <freq_min>200000</freq_min>
-                <freq_max>1000000</freq_max>
-                <freq_hispeed>800000</freq_hispeed>
-                <freq_boost>0</freq_boost>
+                <freq_max>1500000</freq_max>
+                <freq_hispeed>700000</freq_hispeed>
+                <freq_boost>700000</freq_boost>
                 <cores>
                     <enabled>true</enabled>
                     <core1>true</core1>
@@ -264,7 +264,7 @@
             <top_app>0-3</top_app>
         </cpusets>
         <gpu>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
             <dvfs>
                 <enabled>false</enabled>
                 <freq_min>100</freq_min>
@@ -300,7 +300,7 @@
                 <freq_min>200000</freq_min>
                 <freq_max>1500000</freq_max>
                 <freq_hispeed>800000</freq_hispeed>
-                <freq_boost>1500000</freq_boost>
+                <freq_boost>800000</freq_boost>
                 <cores>
                     <enabled>true</enabled>
                     <core1>true</core1>
@@ -359,7 +359,7 @@
             <top_app>0-3</top_app>
         </cpusets>
         <gpu>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
             <dvfs>
                 <enabled>false</enabled>
                 <freq_min>160</freq_min>
@@ -394,7 +394,7 @@
                 <governor>interactive</governor>
                 <freq_min>200000</freq_min>
                 <freq_max>1500000</freq_max>
-                <freq_hispeed>1000000</freq_hispeed>
+                <freq_hispeed>900000</freq_hispeed>
                 <freq_boost>1500000</freq_boost>
                 <cores>
                     <enabled>true</enabled>
@@ -449,7 +449,7 @@
             <top_app>0-3</top_app>
         </cpusets>
         <gpu>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
             <dvfs>
                 <enabled>false</enabled>
                 <freq_min>266</freq_min>
@@ -485,7 +485,7 @@
                 <governor>interactive</governor>
                 <freq_min>200000</freq_min>
                 <freq_max>1500000</freq_max>
-                <freq_hispeed>1100000</freq_hispeed>
+                <freq_hispeed>1200000</freq_hispeed>
                 <freq_boost>1500000</freq_boost>
                 <cores>
                     <enabled>true</enabled>
@@ -495,16 +495,16 @@
                     <core4>true</core4>
                 </cores>
                 <governor_data>
-                    <above_hispeed_delay>20000</above_hispeed_delay>
+                    <above_hispeed_delay>19000</above_hispeed_delay>
                     <boost>0</boost>
                     <boostpulse_duration>80000</boostpulse_duration>
                     <hispeed_freq>1100000</hispeed_freq>
-                    <go_hispeed_load>99</go_hispeed_load>
+                    <go_hispeed_load>85</go_hispeed_load>
                     <io_is_busy>0</io_is_busy>
-                    <min_sample_time>80000</min_sample_time>
-                    <target_loads>90</target_loads>
+                    <min_sample_time>40000</min_sample_time>
+                    <target_loads>75</target_loads>
                     <timer_rate>20000</timer_rate>
-                    <timer_slack>80000</timer_slack>
+                    <timer_slack>20000</timer_slack>
                 </governor_data>
             </cluster1>
             <cluster2>
@@ -544,9 +544,9 @@
             <top_app>0-3</top_app>
         </cpusets>
         <gpu>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
             <dvfs>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
                 <freq_min>420</freq_min>
                 <freq_max>772</freq_max>
             </dvfs>
@@ -589,22 +589,22 @@
                     <core4>true</core4>
                 </cores>
                 <governor_data>
-                    <above_hispeed_delay>20000</above_hispeed_delay>
+                    <above_hispeed_delay>19000</above_hispeed_delay>
                     <boost>0</boost>
                     <boostpulse_duration>80000</boostpulse_duration>
                     <hispeed_freq>1500000</hispeed_freq>
-                    <go_hispeed_load>99</go_hispeed_load>
+                    <go_hispeed_load>85</go_hispeed_load>
                     <io_is_busy>0</io_is_busy>
-                    <min_sample_time>80000</min_sample_time>
-                    <target_loads>90</target_loads>
+                    <min_sample_time>40000</min_sample_time>
+                    <target_loads>75</target_loads>
                     <timer_rate>20000</timer_rate>
-                    <timer_slack>80000</timer_slack>
+                    <timer_slack>20000</timer_slack>
                 </governor_data>
             </cluster1>
             <cluster2>
                 <enabled>false</enabled>
                 <governor>interactive</governor>
-                <freq_min>200000</freq_min>
+                <freq_min>400000</freq_min>
                 <freq_max>1500000</freq_max>
                 <freq_hispeed>1500000</freq_hispeed>
                 <freq_boost>0</freq_boost>
@@ -638,7 +638,7 @@
             <top_app>0-3</top_app>
         </cpusets>
         <gpu>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
             <dvfs>
                 <enabled>false</enabled>
                 <freq_min>544</freq_min>
@@ -662,3 +662,4 @@
     </performance>
 
 </profiles>
+

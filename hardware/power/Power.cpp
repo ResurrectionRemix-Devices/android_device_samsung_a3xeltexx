@@ -117,17 +117,20 @@ Return<void> Power::setInteractive(bool interactive) {
 	}
 
 	if (!interactive) {
+		/* Set input state first as this should be faster in any profile except screen off */
+		setInputState(interactive);
+
 		setProfile(SecPowerProfiles::SCREEN_OFF);
 	} else {
 		// reset to requested- or fallback-profile
-		resetProfile(500);
+		resetProfile();
+		/* Set input state after switching to interactive */
+		setInputState(interactive);
 	}
 
 	// speed up the device a bit
 	/* Utils::write("/sys/kernel/hmp/boostpulse_duration", 2500000); // 2.5s
 	Utils::write("/sys/kernel/hmp/boostpulse", true); */
-
-	setInputState(interactive);
 
 exit:
 	auto end = Utils::getTime();
@@ -191,13 +194,13 @@ Return<void> Power::powerHint(PowerHint hint, int32_t data)  {
 		 */
 		case_uint32_t (PowerHint::INTERACTION):
 		{
-			ALOGV("%s: PowerHint::INTERACTION(%d)", __func__, data);
-			boostpulse(data);
+			//ALOGV("%s: PowerHint::INTERACTION(%d)", __func__, data);
+			//boostpulse(data);
 			break;
 		}
 		case_uint32_t (PowerHint::LAUNCH):
 		{
-			ALOGV("%s: PowerHint::LAUNCH(%d)", __func__, data);
+			//ALOGV("%s: PowerHint::LAUNCH(%d)", __func__, data);
 			boostpulse(data);
 			break;
 		}
@@ -257,7 +260,7 @@ Return<int32_t> Power::getFeature(LineageFeature feature)  {
 		case_uint32_t (Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE):
 		{
 			return (Utils::isFile(POWER_DT2W_ENABLED) && 
-			    Utils::canWrite(POWER_DT2W_ENABLED)) ? 1 : 0;
+				Utils::canWrite(POWER_DT2W_ENABLED)) ? 1 : 0;
 		}
 	}
 
@@ -306,7 +309,7 @@ void Power::boostpulse(int duration) {
 
 void Power::setProfile(SecPowerProfiles profile) {
 	auto begin = Utils::getTime();
- 	ALOGI("%s: applying profile %d", __func__, profile);
+	 ALOGI("%s: applying profile %d", __func__, profile);
 
 	// store it
 	mCurrentProfile = profile;
@@ -405,11 +408,11 @@ void Power::setProfile(SecPowerProfiles profile) {
 	 * cpusets
 	 */
 	if (data->cpusets.enabled) {
-		Utils::write("/dev/cpuset/cpus",                   data->cpusets.defaults);
-		Utils::write("/dev/cpuset/foreground/cpus",        data->cpusets.foreground);
-		Utils::write("/dev/cpuset/background/cpus",        data->cpusets.background);
+		Utils::write("/dev/cpuset/cpus",				   data->cpusets.defaults);
+		Utils::write("/dev/cpuset/foreground/cpus",		data->cpusets.foreground);
+		Utils::write("/dev/cpuset/background/cpus",		data->cpusets.background);
 		Utils::write("/dev/cpuset/system-background/cpus", data->cpusets.system_background);
-		Utils::write("/dev/cpuset/top-app/cpus",           data->cpusets.top_app);
+		Utils::write("/dev/cpuset/top-app/cpus",		   data->cpusets.top_app);
 	}
 
 	/*********************
@@ -423,7 +426,7 @@ void Power::setProfile(SecPowerProfiles profile) {
 		}
 		if (data->gpu.highspeed.enabled) {
 			Utils::write("/sys/devices/11400000.mali/highspeed_clock",   data->gpu.highspeed.freq);
-			Utils::write("/sys/devices/11400000.mali/highspeed_load",    data->gpu.highspeed.load);
+			Utils::write("/sys/devices/11400000.mali/highspeed_load",	data->gpu.highspeed.load);
 		}
 	}
 
@@ -472,7 +475,7 @@ void Power::resetProfile(int delay) {
 
 void Power::setInputState(bool enabled) {
 	auto begin = Utils::getTime();
- 	ALOGI("%s: enter; enabled=%d", __func__, enabled ? 1 : 0);
+	 ALOGI("%s: enter; enabled=%d", __func__, enabled ? 1 : 0);
 
 	if (enabled) {
 		if (!mTouchControlPath.empty()) {
@@ -495,7 +498,7 @@ void Power::setInputState(bool enabled) {
 		}
 	}
 
-	//DEBUG_TIMING(dt2w, setDT2WState());
+	DEBUG_TIMING(dt2w, setDT2WState());
 
 	auto end = Utils::getTime();
 	auto diff = end - begin;
@@ -515,25 +518,25 @@ void Power::setFingerprintState(bool enabled) {
 	 *   * removing internal pm management block
 	 *   * resuming debugging timer work
 	 *   * powering on regulator
-	 *       * SMC to initialize FP sensor boot
-	 *       * delaying for ~2,95-3,00ms
-	 *       * powering on ldo_pin2 GPIO pin
-	 *       * powering on ldo_pin GPIO pin
+	 *	   * SMC to initialize FP sensor boot
+	 *	   * delaying for ~2,95-3,00ms
+	 *	   * powering on ldo_pin2 GPIO pin
+	 *	   * powering on ldo_pin GPIO pin
 	 *   * delaying for 10ms
 	 *   * hard resetting GPIO sleep pin
-	 *       * setting sleep pin(0)
-	 *       * delaying for 1ms
-	 *       * setting sleep pin(1)
-	 *       * delaying for 5ms
+	 *	   * setting sleep pin(0)
+	 *	   * delaying for 1ms
+	 *	   * setting sleep pin(1)
+	 *	   * delaying for 5ms
 	 *   * delaying for 20ms
 	 *
 	 * 0 (false)  -> power off:
 	 *   * powering off regulator
-	 *       * powering off ldo_pin GPIO pin
-	 *       * powering off ldo_pin2 GPIO pin
-	 *       * SMC to finish FP sensor shutdown
+	 *	   * powering off ldo_pin GPIO pin
+	 *	   * powering off ldo_pin2 GPIO pin
+	 *	   * SMC to finish FP sensor shutdown
 	 *   * setting GPIO sleep pin
-	 *       * setting sleep pin(0)
+	 *	   * setting sleep pin(0)
 	 *   * stopping debugging timer work
 	 *   * setting internal pm management block
 	 */
@@ -547,11 +550,11 @@ void Power::setFingerprintState(bool enabled) {
 }
 
 void Power::setDT2WState() {
-	//if (mIsDT2WEnabled) {
-	//	Utils::write(POWER_DT2W_ENABLED, true);
-	//} else {
-	//	Utils::write(POWER_DT2W_ENABLED, false);
-	//}
+	if (mIsDT2WEnabled) {
+		Utils::write(POWER_DT2W_ENABLED, true);
+	} else {
+		Utils::write(POWER_DT2W_ENABLED, false);
+	}
 }
 
 bool Power::isModuleEnabled(string module) {
