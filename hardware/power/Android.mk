@@ -29,26 +29,26 @@ LOCAL_PROPRIETARY_MODULE   := true
 LOCAL_INIT_RC := android.hardware.power@1.0-service.universal7580.rc
 
 LOCAL_SRC_FILES := \
-	Service.cpp \
-	Power.cpp \
-	Profiles.cpp
+    Service.cpp \
+    Power.cpp \
+    Profiles.cpp
 
 LOCAL_SHARED_LIBRARIES := \
-	libbase \
-	libcutils \
-	libdl \
-	libhardware \
-	libhidlbase \
-	libhidltransport \
-	liblog \
-	libutils \
-	libxml2 \
-	libuniversal7580utils \
-	android.hardware.power@1.0 \
-	vendor.lineage.power@1.0
+    libbase \
+    libcutils \
+    libdl \
+    libhardware \
+    libhidlbase \
+    libhidltransport \
+    liblog \
+    libutils \
+    libxml2 \
+    libuniversal7580utils \
+    android.hardware.power@1.0 \
+    vendor.lineage.power@1.0
 
 LOCAL_C_INCLUDES := \
-	external/libxml2/include
+    external/libxml2/include
 
 LOCAL_CFLAGS := -Wall -Werror -Wno-unused-parameter -Wno-unused-function
 
@@ -57,7 +57,7 @@ ifneq (,$(wildcard hardware/lineage/interfaces/power/1.0/ vendor/cmsdk/))
 endif
 
 # Enables mutex-protection against multithreading-problems
-# but may cause deadlocks while booting. Recommended if 
+# but may cause deadlocks while booting. Recommended if
 # problems can be traced back to overlapping HAL-calls
 # LOCAL_CFLAGS += -DLOCK_PROTECTION
 

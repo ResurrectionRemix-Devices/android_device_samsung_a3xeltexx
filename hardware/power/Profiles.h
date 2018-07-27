@@ -31,13 +31,13 @@ namespace hardware {
 namespace power {
 namespace V1_0 {
 namespace implementation {
-    
+
 using ::std::string;
 using ::std::map;
 
 struct SecPowerProfileCpuCluster {
     bool enabled;
-    
+
     string governor;
 
     unsigned int freq_min;

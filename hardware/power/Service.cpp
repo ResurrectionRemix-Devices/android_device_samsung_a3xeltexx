@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "zero-power-service"
+#define LOG_TAG "universal7580-power-service"
 // #define LOG_NDEBUG 0
 
 #include <hidl/LegacySupport.h>
@@ -34,10 +34,10 @@ using android::OK;
 using android::hardware::power::V1_0::implementation::Power;
 
 int main() {
-	status_t status;
-	android::sp<Power> service = nullptr;
+    status_t status;
+    android::sp<Power> service = nullptr;
 
-	ALOGI("Zero Power HAL Service is starting...");
+    ALOGI("Universal7580 Power HAL Service is starting...");
 
     service = new Power();
     if (service == nullptr) {
@@ -53,10 +53,10 @@ int main() {
         goto shutdown;
     }
 
-    ALOGI("Zero Power HAL Service is ready!");
+    ALOGI("Universal7580 Power HAL Service is ready!");
     joinRpcThreadpool();
 
 shutdown:
-    ALOGE("Zero Power HAL Service is shutting down...");
+    ALOGE("Universal7580 Power HAL Service is shutting down...");
     return 1;
 }
