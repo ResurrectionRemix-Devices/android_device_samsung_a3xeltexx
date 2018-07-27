@@ -45,13 +45,13 @@
                 <governor>interactive</governor>
 
                 <!-- {number} Minimal frequency of this cluster -->
-                <freq_min>200000</freq_min>
+                <freq_min>400000</freq_min>
 
                 <!-- {number} Maximal frequency of this cluster -->
                 <freq_max>600000</freq_max>
 
                 <!-- {number} Normal high speed frequency chosen by the CPU-governor (if supported) -->
-                <freq_hispeed>400000</freq_hispeed>
+                <freq_hispeed>600000</freq_hispeed>
 
                 <!-- {number} Frequency used in boostpulse mode (if supported, else any positive
                      number to enable boostpules) or zero to disable boostpulses -->
@@ -80,13 +80,13 @@
                     <above_hispeed_delay>20000</above_hispeed_delay>
                     <boost>0</boost>
                     <boostpulse_duration>80000</boostpulse_duration>
-                    <hispeed_freq>300000</hispeed_freq>
+                    <hispeed_freq>600000</hispeed_freq>
                     <go_hispeed_load>99</go_hispeed_load>
                     <io_is_busy>0</io_is_busy>
                     <min_sample_time>80000</min_sample_time>
                     <target_loads>90</target_loads>
                     <timer_rate>20000</timer_rate>
-                    <timer_slack>80000</timer_slack>
+                    <timer_slack>20000</timer_slack>
                 </governor_data>
             </cluster1>
 
