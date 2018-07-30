@@ -483,7 +483,6 @@ void Power::setInputState(bool enabled) {
         }
 
         ASYNC(DEBUG_TIMING(touchkeys_state, Utils::write(POWER_TOUCHKEYS_ENABLED, mTouchkeysEnabled)));
-        DEBUG_TIMING(touchkeys_brightness, Utils::write(POWER_TOUCHKEYS_BRIGHTNESS, 1));
     } else {
         // save to current state to prevent enabling
         DEBUG_TIMING(touchkeys_state_read, Utils::read(POWER_TOUCHKEYS_ENABLED, mTouchkeysEnabled));
