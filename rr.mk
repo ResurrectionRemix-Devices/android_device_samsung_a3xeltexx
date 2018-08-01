@@ -19,10 +19,10 @@
 $(call inherit-product, device/samsung/a3xeltexx/full_a3xeltexx.mk)
 
 # Inherit common Lineage phone.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/rr/config/common_full_phone.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := lineage_a3xeltexx
+PRODUCT_NAME := rr_a3xeltexx
 PRODUCT_DEVICE := a3xeltexx
 PRODUCT_MODEL := SM-A310F
 PRODUCT_BRAND := samsung
